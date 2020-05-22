@@ -10,7 +10,9 @@ namespace MiniTC.ViewModel
         Panel panel = new Panel();
 
         #region Lewy panel
+
         private string leftdirectory = null;
+
         //Uaktualnij lewy panel
         public string Left
         {
@@ -22,14 +24,13 @@ namespace MiniTC.ViewModel
                 onPropertyChanged(nameof(Left));
             }
         }
+
         //Dodaj zawartość ścieżki do lewego panelu
         public ObservableCollection<string> CurrentLeftFiles
         {
-            get 
-            {
-                return new ObservableCollection<string> (panel.GetAllFiles(Left));
-            }
+            get{ return new ObservableCollection<string> (panel.GetAllFiles(Left));}
         }
+
         //Zmiana zaznaczenia w lewym panelu
         private ICommand leftchange = null;
         public ICommand LeftChceck
@@ -45,8 +46,11 @@ namespace MiniTC.ViewModel
         }
         #endregion
 
+
         #region Prawy panel
+
         private string rightdirectory = null;
+
         //Uaktualnij prawy panel
         public string Right
         {
@@ -58,11 +62,13 @@ namespace MiniTC.ViewModel
                 onPropertyChanged(nameof(Right));
             }
         }
+
         //Dodaj zawartość ścieżki do prawego panelu
         public ObservableCollection<string> CurrentRightFiles
         {
             get{ return new ObservableCollection<string> (panel.GetAllFiles(Right)); }
         }
+
         //Zmiana zaznaczenia w prawym panelu
         private ICommand rightcheck = null;
         public ICommand RightCheck
@@ -79,14 +85,18 @@ namespace MiniTC.ViewModel
         }
         #endregion
 
+
         #region Funkcje
+
         //Zwróć dostępne dyski
         public ObservableCollection<string> CurrentDrives
         {
             get{ return new ObservableCollection<string>(panel.GetAllDrives()); }
         }
+
         //Zwróć wybrany plik
         public string SelectedFile { get; set; }
+
         //Kopiowanie pliku
         private ICommand _copy = null;
         public ICommand Copy

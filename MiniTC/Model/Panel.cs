@@ -7,6 +7,7 @@ namespace MiniTC.Model
     {
         //Zwróć wszystkie dostępne dyski
         public string[] GetAllDrives() => Directory.GetLogicalDrives();
+
         //Zwróć wszystkie pliki dla ścieżki
         public string[] GetAllFiles(string path)
         {
@@ -24,15 +25,15 @@ namespace MiniTC.Model
 
                 for (int j = 0; j < Files.Length; j++)
                     Content.Add(Path.GetFileName(Files[j]));
-
             }
             catch {}
             return Content.ToArray();
         }
+
         //Przejdź do nowego folderu
         public string ChangePath(string path, string selectedFile)
         {
-            if (selectedFile != null && selectedFile.Contains("<D>") && selectedFile != ".." )
+            if (selectedFile != null && selectedFile != ".." && selectedFile.Contains("<D>") )
             {
                 selectedFile = selectedFile.Replace("<D>", "");
                 string newPath = Path.Combine(path, selectedFile);
@@ -44,15 +45,14 @@ namespace MiniTC.Model
 
             return path;
         }
+
         //Zwróć folder nadrzędny
         public static string GetParentOfFile(string path) => Directory.GetParent(path).FullName;
+
         //Kopiuj plik
         public void CopyFile(string source, string destination)
         {
-            try
-            {
-                File.Copy(source, destination, true);
-            }
+            try{ File.Copy(source, destination, true); }
             catch {}
         }
     }
