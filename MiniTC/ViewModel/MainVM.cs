@@ -10,57 +10,57 @@ namespace MiniTC.ViewModel
         Panel panel = new Panel();
 
         #region Lewy panel
-        private string _currentLeftDirectory = null;
+        private string leftdirectory = null;
         //Uaktualnij lewy panel
-        public string CurrentLeftDirectory
+        public string LeftDirectory
         {
-            get { return _currentLeftDirectory; }
+            get { return leftdirectory; }
             set
             {
-                _currentLeftDirectory = value;
+                leftdirectory = value;
                 onPropertyChanged(nameof(CurrentLeftFiles));
-                onPropertyChanged(nameof(CurrentLeftDirectory));
+                onPropertyChanged(nameof(LeftDirectory));
             }
         }
         //Dodaj zawartość ścieżki do lewego panelu
         public ObservableCollection<string> CurrentLeftFiles
         {
-            get
+            get 
             {
-                return new ObservableCollection<string> (panel.GetAllFiles(CurrentLeftDirectory));
+                return new ObservableCollection<string> (panel.GetAllFiles(LeftDirectory));
             }
         }
         //Zmiana zaznaczenia w lewym panelu
-        private ICommand _leftClick = null;
-        public ICommand LeftClick
+        private ICommand leftchange = null;
+        public ICommand LeftChceck
         {
             get
             {
-                if (_leftClick == null)
+                if (leftchange == null)
                 {
-                    _leftClick = new RelayCommand(
+                    leftchange = new RelayCommand(
                         x => {
-                            CurrentLeftDirectory = panel.ChangePath
-                         (CurrentLeftDirectory, SelectedFile);
+                            LeftDirectory = panel.ChangePath
+                         (LeftDirectory, SelectedFile);
                         },
                         x => true);
                 }
-                return _leftClick;
+                return leftchange;
             }
         }
         #endregion
 
         #region Prawy panel
-        private string _currentRightDirectory = null;
+        private string rightdirectory = null;
         //Uaktualnij prawy panel
-        public string CurrentRightDirectory
+        public string RightDirectory
         {
-            get { return _currentRightDirectory; }
+            get { return rightdirectory; }
             set
             {
-                _currentRightDirectory = value;
+                rightdirectory = value;
                 onPropertyChanged(nameof(CurrentRightFiles));
-                onPropertyChanged(nameof(CurrentRightDirectory));
+                onPropertyChanged(nameof(RightDirectory));
             }
         }
         //Dodaj zawartość ścieżki do prawego panelu
@@ -69,26 +69,26 @@ namespace MiniTC.ViewModel
             get
             {
                 return new ObservableCollection<string>
-                    (panel.GetAllFiles(CurrentRightDirectory));
+                    (panel.GetAllFiles(RightDirectory));
             }
         }
         //Zmiana zaznaczenia w prawym panelu
-        private ICommand _rightClick = null;
-        public ICommand RightClick
+        private ICommand rightcheck = null;
+        public ICommand RightCheck
         {
             get
             {
-                if (_rightClick == null)
+                if (rightcheck == null)
                 {
-                    _rightClick = new RelayCommand(
+                    rightcheck = new RelayCommand(
                     (arg) => {
-                        CurrentRightDirectory = panel.ChangePath
-                 (CurrentRightDirectory, SelectedFile);
+                        RightDirectory = panel.ChangePath
+                 (RightDirectory, SelectedFile);
                     },
                     (arg) => true
                     );
                 }
-                return _rightClick;
+                return rightcheck;
             }
 
         }
@@ -115,10 +115,10 @@ namespace MiniTC.ViewModel
                 {
                     _copy = new RelayCommand(x =>
                     {
-                        if (CurrentRightDirectory != null)
+                        if (RightDirectory != null)
                         {
-                            string source = CurrentLeftDirectory + @"\" + SelectedFile;
-                            string destination = _currentRightDirectory + @"\" + SelectedFile;
+                            string source = LeftDirectory + @"\" + SelectedFile;
+                            string destination = rightdirectory + @"\" + SelectedFile;
                             panel.CopyFile(source, destination);
                         }
                         onPropertyChanged(nameof(CurrentRightFiles));

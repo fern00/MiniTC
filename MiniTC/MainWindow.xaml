@@ -10,10 +10,10 @@
         Title="MiniTC" Height="450" Width="600" Background="LightGray">
     
     <Window.Resources>
-        <vm:MainVM x:Key="mainViewModel"/>
+        <vm:MainVM x:Key="MainVM"/>
     </Window.Resources>
-    
-    <Grid DataContext="{StaticResource mainViewModel}">
+
+    <Grid DataContext="{StaticResource MainVM}">
         <Grid.RowDefinitions>
             <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
@@ -21,30 +21,30 @@
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <local:PanelTC Grid.Column="0" 
-                   CurrentPath="{Binding CurrentLeftDirectory, Mode=TwoWay}"
+                   CurrentPath="{Binding LeftDirectory, Mode=TwoWay}"
                    AllDrives="{Binding Path=CurrentDrives}" 
                    AllFiles="{Binding Path=CurrentLeftFiles}" 
                    CurrentFile="{Binding Path=SelectedFile, Mode=TwoWay}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding LeftClick}"/>
+                        <i:InvokeCommandAction Command="{Binding LeftChceck}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </local:PanelTC>
 
             <local:PanelTC Grid.Column="1" 
-                   CurrentPath="{Binding CurrentRightDirectory, Mode=TwoWay}"
+                   CurrentPath="{Binding RightDirectory, Mode=TwoWay}"
                    AllDrives="{Binding Path=CurrentDrives}" 
                    AllFiles="{Binding Path=CurrentRightFiles}" 
                    CurrentFile="{Binding Path=SelectedFile, Mode=TwoWay}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding RightClick}"/>
+                        <i:InvokeCommandAction Command="{Binding RightCheck}"/>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </local:PanelTC>
