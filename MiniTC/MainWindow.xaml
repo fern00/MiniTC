@@ -1,0 +1,62 @@
+﻿<Window x:Class="MiniTC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiniTC"
+        xmlns:vm="clr-namespace:MiniTC.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d"
+        Title="MiniTC" Height="450" Width="600" Background="LightGray">
+    
+    <Window.Resources>
+        <vm:MainVM x:Key="mainViewModel"/>
+    </Window.Resources>
+    
+    <Grid DataContext="{StaticResource mainViewModel}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <local:PanelTC Grid.Column="0" 
+                   CurrentPath="{Binding CurrentLeftDirectory, Mode=TwoWay}"
+                   AllDrives="{Binding Path=CurrentDrives}" 
+                   AllFiles="{Binding Path=CurrentLeftFiles}" 
+                   CurrentFile="{Binding Path=SelectedFile, Mode=TwoWay}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding LeftClick}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:PanelTC>
+
+            <local:PanelTC Grid.Column="1" 
+                   CurrentPath="{Binding CurrentRightDirectory, Mode=TwoWay}"
+                   AllDrives="{Binding Path=CurrentDrives}" 
+                   AllFiles="{Binding Path=CurrentRightFiles}" 
+                   CurrentFile="{Binding Path=SelectedFile, Mode=TwoWay}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding RightClick}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </local:PanelTC>
+
+        </Grid>
+
+        <Button Grid.Row="1" Content="Copy >>" Width="90" Margin="10">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="Click">
+                    <i:InvokeCommandAction Command="{Binding Copy}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Button>
+    </Grid>
+</Window>
