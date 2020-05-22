@@ -50,8 +50,7 @@
             </local:PanelTC>
 
         </Grid>
-
-        <Button Grid.Row="1" Content="Copy >>" Width="90" Margin="10">
+        <Button Grid.Row="1" Content=">> Copy >>" Width="90" Margin="10" HorizontalAlignment="Center">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Click">
                     <i:InvokeCommandAction Command="{Binding Copy}"/>
