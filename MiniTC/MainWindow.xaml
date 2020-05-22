@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
 
             <local:PanelTC Grid.Column="0" 
-                   CurrentPath="{Binding LeftDirectory, Mode=TwoWay}"
+                   CurrentPath="{Binding Left, Mode=TwoWay}"
                    AllDrives="{Binding Path=CurrentDrives}" 
                    AllFiles="{Binding Path=CurrentLeftFiles}" 
                    CurrentFile="{Binding Path=SelectedFile, Mode=TwoWay}">
@@ -38,7 +38,7 @@
             </local:PanelTC>
 
             <local:PanelTC Grid.Column="1" 
-                   CurrentPath="{Binding RightDirectory, Mode=TwoWay}"
+                   CurrentPath="{Binding Right, Mode=TwoWay}"
                    AllDrives="{Binding Path=CurrentDrives}" 
                    AllFiles="{Binding Path=CurrentRightFiles}" 
                    CurrentFile="{Binding Path=SelectedFile, Mode=TwoWay}">
